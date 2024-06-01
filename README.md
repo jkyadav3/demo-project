@@ -4,8 +4,8 @@ Postgresql for database
 Render for deployment
 
 # Endpoints (Both the endpoints are public)
-1. https://demo-strapi-server.onrender.com/api/identify
-2. https://demo-strapi-server.onrender.com/api/contacts
+1. [POST] https://demo-strapi-server.onrender.com/api/identify
+2.[GET] https://demo-strapi-server.onrender.com/api/contacts
 
 
 # File that contains logic
