@@ -71,6 +71,7 @@ const findPrimaryContactId = (contactRows) => {
     return null;
 };
 
+
 const findPrimaryContactIds = (contactRows) => {
     // Look for primaryContactIds
     const primaryContactIds = [];
@@ -83,7 +84,8 @@ const findPrimaryContactIds = (contactRows) => {
     return primaryContactIds;
 };
 
-const getContactRows = async (email, phoneNumber) => {
+//Method that fetches matching contact records from db
+const getContactRows = async (email:string, phoneNumber:string) => {
     try {
         let condition = [];
         if (email) {
@@ -92,8 +94,6 @@ const getContactRows = async (email, phoneNumber) => {
         if (phoneNumber) {
             condition.push({ phoneNumber });
         }
-
-        console.log("condition", condition);
 
         const entries = await strapi.db.query("api::contact.contact").findMany({
             where: {
@@ -151,12 +151,10 @@ export default factories.createCoreController('api::contact.contact', ({ strapi 
             return ctx.badRequest("Both parameters can't be blank...");
         }
 
-        let primayContactId;
+        let primayContactId: number;
 
         try {
             const entries = await getContactRows(email, phoneNumber);
-
-            console.log("entries", entries);
 
             //If no entries found then create a new entry in this case
             if (!entries.length) {
