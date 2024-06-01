@@ -2,8 +2,6 @@
  * contact controller
  */
 import { Context, Next } from 'koa';
-
-// Define your context and next function here, or import if they're defined elsewhere
 const next: Next = () => Promise.resolve();
 
 import { factories } from '@strapi/strapi'
@@ -18,6 +16,7 @@ interface CreateResponse {
     };
 }
 
+//Method that returns the final object
 const getIdentity = (contactRows) => {
     let primaryContact = null;
     const emails = new Set();
@@ -71,9 +70,9 @@ const findPrimaryContactId = (contactRows) => {
     return null;
 };
 
-
+//This methods primary contact id for matching records
 const findPrimaryContactIds = (contactRows) => {
-    // Look for primaryContactIds
+    
     const primaryContactIds = [];
     for (const item of contactRows) {
         if (item.linkPrecedence === "primary") {
